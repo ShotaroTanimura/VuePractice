@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <p>{{message}}</p>
+    <!-- Tomの表示   -->
+    <p>{{name[0]}}</p> 
+    <input type="text" v-bind:value="message">
+    <p v-if="bool">bool is false</p>
+    <ol>
+      <li v-for = "name in names">{{name}}</li>
+    </ol>
+    <ul>
+      <li v-for = "values in users">{{values.id}},{{values.name}},{{values.age}}</li>
+    </ul>
+  </div>
+  <script src="https://unpkg.com/vue@3.1.5"></script>
+  <script src="../JS/01_データバインディング.js"></script>
+</body>
+</html>
