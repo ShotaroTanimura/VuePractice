@@ -23,7 +23,18 @@ const app = Vue.createApp({
       id: 3,
       name: "c",
       age: 30
-    }]
+    }],
+    click: "now",
+    changeMessage: "name"
   }),
+  methods: {
+    onClick: function(){
+      this.click = new Date().toLocaleString()
+    }
+  }
 });
+
+app.component('component-name',{
+  template: '<p>My name is TTT</p>'
+})
 app.mount('#app');

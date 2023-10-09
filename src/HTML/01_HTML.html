@@ -18,6 +18,13 @@
     <ul>
       <li v-for = "values in users">{{values.id}},{{values.name}},{{values.age}}</li>
     </ul>
+    <div id="app">
+      <button v-on:click = "onClick">click</button>
+      <p>{{click}}</p>
+    </div>
+    <p><input type="text" v-model="changeMessage"></p>
+    <h2>{{changeMessage}}</h2>
+    <component-name></component-name>
   </div>
   <script src="https://unpkg.com/vue@3.1.5"></script>
   <script src="../JS/01_データバインディング.js"></script>
