@@ -128,7 +128,7 @@ app.mount('#app');
 ```
 #### 条件分岐
 表示/非表示の切り替えに便利
-boolプロパティの仲がtrueなら表示、falseなら非表示
+boolプロパティの中がtrueなら表示、falseなら非表示
 **v-if**
 ```javascript
 const app = Vue.createApp({
@@ -210,4 +210,91 @@ const app = Vue.createApp({
   }),
 });
 app.mount('#app');
+```
+
+### イベント処理をしよう
+ボタンを押したら表示する
+**v-onディレクティブ**
+記述方法：v-on:イベント名 = "メソッド名"
+メソッドはmethodsオプションに記入する
+```javascript
+const app = Vue.createApp({
+  data: () => ({
+    click: "now",
+  }),
+  methods:{
+    onClick: function(){
+      this.click = new Date().toLocaleString()
+    }
+  }
+  
+});
+app.mount('#app');
+```
+```html
+<div id="app">
+  <button v-on:click = "onClick">click</button>
+  <p>{{click}}</p>
+</div>
+```
+
+#### thisについて
+
+メソッド内の `this` は、基本的には「自分が属しているオブジェクト」を指します。
+
+例を見てみましょう。
+
+```javascript
+const dog = {
+    name: 'ポチ',
+    bark: function() {
+        console.log(this.name + 'がワンワンと吠える！');
+    }
+};
+
+dog.bark(); // "ポチがワンワンと吠える！"
+```
+
+この例での `dog.bark` メソッドの中の `this` は、`dog` オブジェクトを指します。そのため、`this.name` は `dog` オブジェクトの `name` プロパティ、つまり "ポチ" を指しています。
+
+簡単に言えば、メソッド内の `this` は「そのメソッドが属しているオブジェクト」を指す、と考えるとわかりやすいでしょう。
+---
+### 双方向データバインディング
+オブジェクトの値を変えると、HTMLの中身が変わることに加え、HTMLの中身を変えるとオブジェクトの中身が変わる。
+**v-model**
+```javascript
+const app = Vue.createApp({
+  data: ()=>({
+    changeMessage: "name"
+  })
+  
+});
+app.mount('#app');
+```
+```html
+<div id="app">
+  <p><input type="text" v-model="changeMessage"></p>
+  <h2>{{changeMessage}}</h2>
+</div>
+```
+
+### コンポーネントについて
+Vue内でhtmlに記述するひな形のようなものを作っておく
+名前付きの再利用可能なインスタンス（UI部品）
+**Vue.component('コンポーネント名', コンポーネント情報)**
+```javascript
+const app = Vue.createApp({
+  data: ()=>({
+  })
+  
+});
+app.component('component-name',{
+  template: '<p>My name is TTT</p>'
+})
+app.mount('#app');
+```
+```html
+<div id="app">
+  <component-name></component-name>
+</div>
 ```
